@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Tharun",
+    "age": 25,
+    "email": "tharun123@gamial.com",
+    "number": 7654398734
+  },
+  {
+    "id": 2,
+    "name": "Kavitha",
+    "age": 27,
+    "email": "kavi123@gamial.com",
+    "number": 8754399234
+  },
+  {
+    "id": 3,
+    "name": "Rahul",
+    "age": 19,
+    "email": "rahul123@gamial.com",
+    "number": 7654654341
+  }
+]
