@@ -9,9 +9,16 @@ import { StyledTableCell, StyledTableRow } from "./App";
 import InfoIcon from '@mui/icons-material/Info';
 import { IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import EditIcon from '@mui/icons-material/Edit';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-export function UserList({ users }) {
-  
+export function UserList({ users,setUsers }) {
+  const getUsers = () =>{
+    fetch("https://63884d9ea4bb27a7f7825e9b.mockapi.io/users")
+    .then((data)=> data.json())
+    .then((res)=>setUsers(res))
+  }
   const navigate = useNavigate()
   return (
     <div className="userList_container">
@@ -39,11 +46,24 @@ export function UserList({ users }) {
                 <StyledTableCell align="center">{usr.email}</StyledTableCell>
                 <StyledTableCell align="center">{usr.number}</StyledTableCell>
                 <StyledTableCell align="center">
-                  <button onClick={()=>navigate(`/editUser/${usr.id}`)}>Edit</button>
-                  <button
+                  
+                  <IconButton color="success" onClick={()=>navigate(`/editUser/${usr.id}`)}>
+                    <EditIcon />
+                  </IconButton>
+
+                  <IconButton
+                    color="error"
+                    onClick={()=>{
+                    fetch(`https://63884d9ea4bb27a7f7825e9b.mockapi.io/users/${usr.id}`,{
+                      method:"DELETE"
+                    })
+                    .then(()=>getUsers())
+                    .then(()=>navigate("/"))
+                  }}
                   >
-                    Delete
-                  </button>
+                    <DeleteIcon />
+                  </IconButton>
+                  
                 </StyledTableCell>
               </StyledTableRow>
             ))}
